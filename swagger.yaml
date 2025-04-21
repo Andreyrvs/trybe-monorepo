@@ -1,0 +1,196 @@
+openapi: 3.0.3
+info:
+  title: Car Shop - OpenAPI 3.0
+  version: 0.1.0
+  description: >-
+    Este projeto trata-se de aplicar os princípios de Programação Orientada a Objetos (POO)
+    para a construção de uma API com CRUD para gerenciar uma concessionária de veículos. 
+    Isso será feito utilizando o banco de dados MongoDB.
+
+
+    Alguns links úteis:
+
+    - [Repositorio da API](https://github.com/Andreyrvs/32-car-shop)
+
+contact:
+  email: cortaesai@gmail.com
+  name: Andrey R. Visniewski
+  url: https://www.linkedin.com/in/andreyrv/
+servers:
+  - url: http://localhost:3001/
+  - url: railway aqui
+tags:
+  - name: Cars
+    description: Endpoints related to Cars data
+paths:
+  /cars:
+    post:
+      tags: 
+        - Cars
+      summary: Novo Carro
+      description: Adiciona um novo carro ao banco de dados
+      requestBody:
+        description: Cria um carro na loja
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarsPut'
+      responses:
+        '201':
+          description: 'Created'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cars'
+        '400':
+          description: 'Bad Request - Quanto falta um item ou o nome está errado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400BadRequest'
+    get:
+      tags: 
+        - Cars
+      summary: Carros
+      description: Lista todos carros no bando de dados
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cars'
+  
+  /cars/{carId}:
+    get:
+      tags: 
+        - Cars
+      summary: Carro
+      description: Retorna um carro com seus respectivos dados
+      parameters:
+        - name: carId
+          in: path
+          description: Busque o carro pelo ID. use `_id` pego na roda **/cars**
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cars'
+    put:
+      tags: 
+        - Cars
+      summary: Carro
+      description: Retorna um carro com seus respectivos dados
+      parameters:
+        - name: carId
+          in: path
+          description: Busque o carro pelo ID. use `_id` pego na roda **/cars**
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Atualiza um carro existente na loja
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarsPut'
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cars'
+
+components:
+  schemas:
+    Cars:
+      type: object
+      properties:
+        _id:
+          type: integer
+          example: "6410ded8f3b9abea6c497729"
+        model:
+          type: string
+          example: Lamborghini diablo
+        year:
+          type: integer
+          example: 2001
+        color:
+          type: string
+          example: red
+        buyValue:
+          type: integer
+          example: 2400000
+        seatsQty:
+          type: integer
+          example: 2
+        doorsQty:
+          type: integer
+          example: 2
+    
+    CarsPut:
+      type: object
+      properties:
+        model:
+          type: string
+          example: Lamborghini Aventator SVJ Roadster
+        year:
+          type: integer
+          example: 2023
+        color:
+          type: string
+          example: gold
+        buyValue:
+          type: integer
+          example: 60909472
+        seatsQty:
+          type: integer
+          example: 2
+        doorsQty:
+          type: integer
+          example: 2
+   
+    400BadRequest:
+      type: object
+      properties:
+        error:
+          $ref:  '#/components/schemas/ErrorArray' 
+    ErrorArray:
+      type: array
+      items:
+        $ref:  '#/components/schemas/ErrorBody' 
+    ErrorBody:
+      type: object
+      properties:
+        code:
+          type: string
+          example: 'invalid_type'
+        expected:
+          type: string
+          example: 'number' 
+        received:
+          type: string
+          example: 'undefined'
+        path:
+          type: string
+          example:
+            - doorsQty
+            - seatsQty
+        message:
+          type: string
+          example: Required
+

@@ -1,0 +1,50 @@
+[
+  {
+    "model": "Huracan",
+    "year": 2021,
+    "color": "Red",
+    "buyValue": 261274,
+    "seatsQty": 2,
+    "doorsQty": 2
+  },
+  {
+    "model": "Aventador",
+    "year": 2020,
+    "color": "Orange",
+    "buyValue": 517000,
+    "seatsQty": 2,
+    "doorsQty": 2
+  },
+  {
+    "model": "Urus",
+    "year": 2022,
+    "color": "Blue",
+    "buyValue": 218000,
+    "seatsQty": 5,
+    "doorsQty": 4
+  },
+  {
+    "model": "Gallardo",
+    "year": 2013,
+    "color": "Yellow",
+    "buyValue": 181900,
+    "seatsQty": 2,
+    "doorsQty": 2
+  },
+  {
+    "model": "Countach",
+    "year": 1989,
+    "color": "Black",
+    "buyValue": 350000,
+    "seatsQty": 2,
+    "doorsQty": 2
+  },
+  {
+    "model": "Diablo",
+    "year": 2001,
+    "color": "Silver",
+    "buyValue": 300000,
+    "seatsQty": 2,
+    "doorsQty": 2
+  }
+]
