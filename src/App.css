@@ -1,0 +1,57 @@
+/* stylelint-disable max-line-length */
+
+/* stylelint-disable at-rule-empty-line-before */
+
+@import url('index.css') ;
+
+.text-format {
+  @apply font-verdana font-bold text-base text-secondText ;
+}
+
+.h1-card {
+  @apply font-epi uppercase text-primarText font-extrabold text-34xl italic ;
+}
+
+.card-format {
+  @apply flex flex-col justify-center items-center ;
+}
+
+.bg-brilho-top {
+  background: radial-gradient(var(--gradient-color-stops));
+  height: 1134px;
+  left: -365px;
+  mix-blend-mode: overlay;
+  position: absolute;
+  top: -349px;
+  width: 1134px;
+}
+
+.bg-brilho-bottom {
+  background-color: radial-gradient(var(--gradient-color-stops));
+  height: 1134px;
+  left: 895px;
+  mix-blend-mode: hard-light;
+  position: absolute;
+  top: 533px;
+  width: 1134px;
+}
+
+.input-main {
+  @apply border-2 border-gray-700 focus:outline-none p-1 shadow rounded-sm focus:ring-2 focus:ring-green-600 focus:border-transparent ;
+}
+
+.input-main-under {
+  @apply focus:outline-none focus:border-green-500 border-b-2 border-gray-700 ;
+}
+
+.input-section {
+  @apply flex items-center space-x-8 ;
+}
+
+.attr {
+  @apply flex flex-row bg-grayPrimary rounded-lg  h-7 ;
+}
+
+.attr-text {
+  @apply z-40 text-white font-epi font-semibold text-base w-10 ;
+}
