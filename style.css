@@ -1,0 +1,62 @@
+body {
+  background-color: #04bf33;
+}
+
+main {
+  display: block;
+  background-color: white;
+  width: 500px;
+  height: 250px;
+  margin-top: 40px;
+  margin-left: 100px;
+  border-radius: 20px;
+  padding-bottom: 50px;
+}
+
+header {
+  display: inline-block;
+  margin-left: 15px;
+  padding-top: 15px;
+}
+
+#funcionamento {
+  margin-left: 15px;
+}
+
+#texto-tarefa {
+  margin-left: 15px;
+  width: 130px;
+}
+
+#criar-tarefa {
+  border-radius: 10px;
+  background-color: #2e97f2;
+  color: white;
+}
+
+#lista-tarefas {
+  background-color: white;
+  border-radius: 20px;
+}
+
+.corCinza {
+  background-color: rgb(128 , 128 , 128);
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+#apaga-tudo {
+  margin-left: 155px;
+  border-radius: 10px;
+  background-color: #F22E39;
+  color: white;
+}
+
+#remover-finalizados {
+  margin-left: 20px;
+  border-radius: 10px;
+  background-color: #2e97f2;
+  color: white;
+}
