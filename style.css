@@ -1,0 +1,84 @@
+body {
+  background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+  user-select: none;
+}
+
+.header-container {
+  display: flex;
+  justify-content: center;
+}
+
+.palette-container {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+/* Display tem que ser block para funcionar, devido a forma que foram gerados */
+#color-palette {
+  display: block;
+  text-align: center;
+}
+
+/* Display tem que ser inline-block para funcionar, devido a forma que foram gerados */
+.color {
+  display: inline-block;
+  border: solid 1px black;
+  margin-right: 7.6px;
+  height: 40px;
+  width: 40px;
+}
+
+.color:first-child {
+  background-color: black;
+}
+
+.color:nth-child( 2 ) {
+  background-color: red;
+}
+
+.color:nth-child( 3 ) {
+  background-color: green;
+}
+
+.color:nth-child( 4 ) {
+  background-color: blue;
+}
+
+.vqv-container {
+  margin: 10px;
+}
+
+.vqv-container > input {
+  width: 154px;
+}
+
+#clear-board {
+  padding: 5px 15px;
+  border: none;
+  outline: none;
+}
+
+#clear-board:hover {
+  background-color: #12c2e9;
+}
+
+.board-container {
+  display: flex;
+  justify-content: center;
+}
+
+#pixel-board {
+  display: block;
+  margin-top: 10px;
+}
+
+.pixel {
+  background-color: white;
+  border: solid 1px black;
+  display: inline-block;
+  height: 40px;
+  margin-bottom: -3px;
+  width: 40px;
+}
