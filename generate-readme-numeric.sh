@@ -25,10 +25,12 @@ gh repo list "$OWNER" \
     ]
     | sort_by(.name)
     | .[]
+    | .createdMonth = (.createdAt | split("-")[1])
+    | .createdYear = (.createdAt | split("-")[0])
     | "| [" + .name + "](https://github.com/'"$OWNER"'/'"$MONOREPO"'/tree/main/" + .name + ")" 
       + " | " + ( .description // "Sem descrição" )
       + " | " + ( .primaryLanguage.name // "Desconhecida" )
-      + " | " + (.createdAt | split("T")[0]) + " |"
+      + " | " + .createdMonth + "/" + .createdYear + " |"
   ' >> "$OUTPUT"
 
-echo "✅ README.md com linguagem e links ajustados gerado com sucesso!"
+echo "✅ README.md com data formatada como MM/AAAA gerado com sucesso!"
