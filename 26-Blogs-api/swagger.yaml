@@ -1,0 +1,347 @@
+openapi: 3.0.3
+info:
+  title: Blogs API - OpenAPI 3.0
+  version: 1.0.0
+  description: >-
+    Este projeto trata-se de uma API e um banco de dados para a produção de
+    conteúdo para um blog!
+
+
+    Alguns links úteis:
+
+    - [Repositorio Blogs API](https://github.com/Andreyrvs/26-blogs-api)
+  contact:
+    email: cortaesai@gmail.com
+    name: Andrey
+    url: https://www.linkedin.com/in/andreyrv/
+servers:
+  - url: http://localhost:3000/
+  - url: https://26-blogs-api-production.up.railway.app/
+tags:
+  - name: health
+    description: Saúde da API
+  - name: login
+    description: Login da Aplicação
+  - name: user
+    description: Tudo sobre os usuários
+  - name: categories
+    description: Tudo sobre categoria dos posts
+  - name: post
+    description: Tudo sobre os posts do blog
+paths:
+  /health:
+    get:
+      tags:
+        - health
+      summary: Status da API
+      description: Retorna um objeto com dados de tempo"
+      responses:
+        '200':
+          description: Operação bem sucedida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+  /login:
+    post:
+      tags:
+        - login
+      summary: Loga o usuário na aplicação.
+      description: Somente usuários que foram criados podem fazer login
+      requestBody:
+        description: Insira o Usuário com respectivos dados
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        '200':
+          description: |-
+            Utilize Esse Token no Botão acima `Authorize 🔓`
+            Sera utilizado para fazer Login na Aplicação.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '500':
+          description: Algo deu errado
+  /user:
+    post:
+      tags:
+        - user
+      summary: Loga o palestrante no sistema.
+      description: >-
+        O endpoint é capaz de adicionar um novo `user` a sua tabela no banco de
+        dados;
+      security:
+        - basicAuth: []
+      requestBody:
+        $ref: '#/components/requestBodies/NewUser'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '500':
+          description: Algo deu errado
+    get:
+      tags:
+        - user
+      summary: Todos usuários
+      description: ''
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Array de objetos com dados dos usuarios.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NewUser'
+        '404':
+          description: User Not Found
+        '500':
+          description: Algo deu errado
+  /user/{userId}:
+    get:
+      tags:
+        - user
+      summary: Retorna um usuário
+      description: ''
+      security:
+        - basicAuth: []
+      parameters:
+        - name: userId
+          in: path
+          description: ID do usuário
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUser'
+        '404':
+          description: User does not exist
+        '500':
+          description: Algo deu errado
+  /categories:
+    post:
+      tags:
+        - categories
+      summary: Insere uma nova categoria
+      description: adiciona uma nova categoria a sua tabela no banco de dados;
+      security:
+        - basicAuth: []
+      requestBody:
+        description: Digite o nome da Categoria
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Categories'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoriesResponse'
+        '400':
+          description: Bad Request
+        '500':
+          description: Algo deu errado
+    get:
+      tags:
+        - categories
+      summary: Todas as categorias.
+      description: Exibe todas as categorias do blog.
+      security:
+        - basicAuth: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '500':
+          description: Algo deu errado
+  /post:
+    post:
+      tags:
+        - post
+      summary: Insere uma nova categoria
+      description: adiciona uma nova categoria a sua tabela no banco de dados;
+      security:
+        - basicAuth: []
+      requestBody:
+        description: Digite o nome da Categoria
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostResponse'
+components:
+  schemas:
+    Health:
+      type: object
+      properties:
+        uptime:
+          type: integer
+          example: 7.076872259
+        message:
+          type: string
+          example: OK
+        timestamp:
+          type: string
+          example: 2023-03-03T23:31:51.184Z
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6MSwiaWF0IjoxNjc4MzE4NDYyLCJleHAiOjE2NzgzMjE3NjJ9.g8OPS2k9v4V0Rd_fyaa1WWPdoZzfAgmGuklmN3cNHRQ
+    Login:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          example: lewishamilton@gmail.com
+        password:
+          type: string
+          example: 123456
+    NewUser:
+      type: object
+      required:
+        - displayName
+        - email
+        - password
+        - image
+      properties:
+        displayName:
+          type: string
+          example: Andrey RV
+        email:
+          type: string
+          example: andreyemail@email.com
+        password:
+          type: string
+          example: UmaSenhaMuitoForte
+        image:
+          type: string
+          example: https://s.gravatar.com/avatar/410d19346c5917f390ea5131fd45c4eb?s=80
+    GetUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        displayName:
+          type: string
+          example: Lewis Hamilton
+        email:
+          type: string
+          example: lewishamilton@gmail.com
+        image:
+          type: string
+          example: >-
+            https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg
+    Categories:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Typescript
+    CategoriesResponse:
+      type: object
+      required:
+        - name
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Typescript
+    Post:
+      type: object
+      required:
+        - title
+        - content
+        - categoryIds
+      properties:
+        title:
+          type: string
+          example: Latest updates, August 1st
+        content:
+          type: string
+          example: The whole text for the blog post goes here in this key
+        categoryIds:
+          type: array
+          items:
+            type: integer
+          example:
+            - 1
+            - 2
+            - 5
+    PostResponse:
+      type: object
+      properties:
+        published:
+          type: string
+          example: 2023-03-09T18:44:05.510Z
+        updated:
+          type: string
+          example: 2023-03-09T19:44:05.511Z
+        id:
+          type: integer
+          example: 4
+        title:
+          type: string
+          example: Latest updates, August 1st
+        content:
+          type: string
+          example: The whole text for the blog post goes here in this key
+        userId:
+          type: integer
+          example: 1
+  requestBodies:
+    NewUser:
+      description: Use o objeto com **email** e **senha**.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NewUser'
+      required: true
+    Categories:
+      description: Nome da categoria
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Categories'
+      required: true
+  securitySchemes:
+    basicAuth:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: Token para fazer login
