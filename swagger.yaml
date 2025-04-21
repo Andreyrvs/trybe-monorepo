@@ -1,0 +1,211 @@
+openapi: 3.0.3
+info:
+  title: TrybeSmith API - OpenAPI 3.0
+  version: 1.0.0
+  description: >-
+    Loja de itens medievais no formato de uma api usando TypeScript. Sendo possivel realizar o CRUD.
+
+
+    Alguns links úteis:
+
+    - [Repositorio TrybeSmith API](https://github.com/Andreyrvs/28-trybe-smith)
+  contact:
+    email: cortaesai@gmail.com
+    name: Andrey R. Visniewski
+    url: https://www.linkedin.com/in/andreyrv/
+servers:
+  - url: http://localhost:3000/
+  - url: https://28-trybe-smith-production.up.railway.app/
+tags:
+  - name: Health
+    description: Endpoints related to health
+  - name: Products
+    description: Endpoints related to products
+  - name: Users
+    description: Endpoints related to Users
+  - name: Orders
+    description: Endpoints related to Orders
+
+
+paths:
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Status da API
+      description: Retorna um objeto com dados de tempo
+      responses:
+        '200':
+          description: Operação bem sucedida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+
+  /products:
+    get:
+      tags:
+        - Products
+      summary: Todos Produtos
+      description: Retorna todos produtos da loja
+      responses:
+        '200':
+          description: Operação bem sucedida
+          content:
+            application/json:
+              schema:
+                tipe: array
+                items:
+                  $ref: '#/components/schemas/Products'
+
+    post:
+      tags:
+        - Products
+      summary: Cria Produtos
+      description: Cria um produto para a loja
+      requestBody:
+        description: Insira o Usuário com respectivos dados
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewProducts'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                tipe: array
+                items:
+                  $ref: '#/components/schemas/Products'
+
+  /users:
+    post:
+      tags:
+        - Users
+      summary: Cria Usuários
+      description: Cria um usuario para a loja
+      requestBody:
+        description: Insira o Usuário com respectivos dados
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUsers'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+
+  /orders:
+    get:
+      tags:
+        - Orders
+      summary: Todas as vendas
+      description: Retorna todas vendas da loja
+      responses:
+        '200':
+          description: Operação bem sucedida
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Orders'
+components:
+  schemas:
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1BWCIsImNsYXNzZSI6InN3b3Jkc21hbiIsImxldmVsIjoxMCwiaWF0IjoxNjc4NzM3MzYwfQ.PLQUC4povORjXfibNCdNad4GJRp6uNg60AipKLr0xvA
+  
+    Health:
+      type: object
+      properties:
+        uptime:
+          type: integer
+          example: 7.076872259
+        message:
+          type: string
+          example: OK
+        timestamp:
+          type: string
+          example: 2023-03-03T23:31:51.184Z
+
+    Products:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Espada curta
+        amount:
+          type: string
+          example: 10 peças de ouro
+        orderId:
+          type: integer
+          example: 1
+
+    NewProducts:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Espada curta
+        amount:
+          type: string
+          example: 10 peças de ouro
+
+    NewUsers:
+      type: object
+      required:
+        - username
+        - classe
+        - level
+        - password
+      properties:
+        username:
+          type: string
+          example: MAX
+        classe:
+          type: string
+          example: swordsman
+        level:
+          type: string
+          example: 10
+        password:
+          type: string
+          example: SavingPeople
+
+    Orders:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        userId:
+          type: integer
+          example: 1
+        productsIds:
+          type: array
+          items:
+            type: integer
+          example: 
+            - 1
+            - 3
+            - 5
+
+  requestBodies:
+    NewProducts:
+      description: Use o objeto com **name** e **amount**.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NewProducts'
+      required: true
