@@ -1,0 +1,83 @@
+.headerContainer button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.headerContainer {
+  border: solid 1px black;
+  display: flex;
+  height: 105px;
+  width: 100%;
+}
+
+/*
+.button-header {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  height: 105px;
+  outline: inherit;
+}
+*/
+
+.headerProdutos {
+  align-items: center;
+  background-color: #2fc18c;
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: 700;
+  justify-content: center;
+  width: 15%;
+}
+
+.headerPedidos {
+  align-items: center;
+  background-color: #036b52;
+  color: white;
+  display: flex;
+  font-size: 28px;
+  font-weight: 700;
+  justify-content: center;
+  width: 35%;
+}
+
+.headerCarrinho {
+  align-items: center;
+  background-color: #fcd707;
+  display: flex;
+  font-size: 28px;
+  font-weight: 700;
+  justify-content: center;
+  width: 20%;
+}
+
+.headerNome {
+  align-items: center;
+  background-color: #421981;
+  color: white;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: center;
+  width: 20%;
+}
+
+.headerSair {
+  align-items: center;
+  background-color: #056cf9;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  width: 10%;
+}
+
+.headerSair button {
+  background-color: #056cf9;
+  border: none;
+  color: white;
+  font-size: 28px;
+
+}
