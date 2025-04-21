@@ -1,0 +1,128 @@
+/* Lint pediu para ter menos de 90 caracteres de tamanho
+ por isso existem tags com o mesmo valor */
+
+body {
+  background-color: rgb(234, 234, 234);
+}
+
+/* Todos que precisam de display Flex */
+.header , .trybewarts-login , main {
+  display: flex;
+}
+
+#evaluation-form , .sua-familia-vontade-aprender-container , .sua-familia-container {
+  display: flex;
+}
+
+.vontade-aprender-container , .satisfaçao-trybewarts-container {
+  display: flex;
+}
+
+.text-area-container , footer {
+  display: flex;
+}
+
+/* Todos os containers que precisao almentar o tamanho da fonte */
+.casas-container > label , .sua-familia-container , .vontade-aprender-container {
+  font-size: 15px;
+}
+
+footer , .satisfaçao-trybewarts-container , .text-area-container {
+  font-size: 15px;
+}
+
+/* Todos containers que tem margin-top */
+.text-area-container , .btn-submit-container {
+  margin-top: 20px;
+}
+
+/* Todos que precisam de flex-direction: column */
+#evaluation-form , .sua-familia-container {
+  flex-direction: column;
+}
+
+.vontade-aprender-container , .text-area-container {
+  flex-direction: column;
+}
+
+.header {
+  background-color: rgb(50, 167, 145);
+  justify-content: space-between;
+}
+
+.trybewarts-header-logo {
+  height: 80px;
+}
+
+#trybewarts-header-title {
+  color: white;
+}
+
+.trybewarts-login {
+  align-items: center;
+}
+
+.trybewarts-login > input {
+  margin: 10px;
+}
+
+main {
+  justify-content: center;
+}
+
+#evaluation-form {
+  width: 675px;
+}
+
+#trybewarts-forms-logo {
+  height: 500px;
+}
+
+.casas-container , .nome-sobrenome-email-container {
+  flex-flow: row;
+  margin: 10px;
+}
+
+hr {
+  width: 500px;
+  margin: 20px;
+}
+
+.sua-familia-vontade-aprender-container {
+  flex-direction: row;
+}
+
+.sua-familia-container {
+  margin-right: 30px;
+}
+
+.sua-familia-container > label {
+  margin-bottom: 10px;
+}
+
+.vontade-aprender-container div , .vontade-aprender-container label {
+  margin-bottom: 10px;
+}
+
+.label-rate {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.agreement-container {
+  flex-direction: row;
+  margin-top: 20px;
+  font-size: 15px;
+  display: flex;
+}
+
+.btn-submit-container {
+  width: 200px;
+}
+
+footer {
+  background-color: rgb(60, 64, 74);
+  margin-top: 20px;
+  justify-content: center;
+  color: white;
+}
